@@ -11,10 +11,10 @@ def create_app():
     def hello(): 
         return 'Hello, PetFax!'
 
+    from . import facts
+    app.register_blueprint(facts.bp)
+
     return app
 
-
-
-   
 
 
