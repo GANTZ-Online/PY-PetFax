@@ -20,6 +20,13 @@
         <div class="callout">
             Got another fun fact about animals? <a href="/facts/new">Submit some here!</a>
         </div>
+        <div class="facts-container">
+            <h1>UserFax</h1>
+            {% for fact in facts %}
+                <h4>Submitted by {{ fact.submitter }}</h4>
+                <p>{{ fact.fact }}</p>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
