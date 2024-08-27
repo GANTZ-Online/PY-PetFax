@@ -4,7 +4,7 @@ from . import models
 # Create a Blueprint instance for the facts routes
 bp = Blueprint('facts', __name__, url_prefix="/facts")
 
-# # Route for displaying the form to submit new facts
+# Route for displaying the form to submit new facts
 # @bp.route('/new', methods=['GET'])
 # def new_fact():
 #     return render_template('facts/new.html')
@@ -54,7 +54,13 @@ def index():
         return redirect('/facts')
     
     results = models.Fact.query.all()
-
+    for result in results:
+        print
     return render_template('facts/index.html', facts=results)
-    
+
+
+
+@bp.route('/new', methods=['GET', 'POST'])
+def new_fact():
+    return render_template('facts/new.html')
     
