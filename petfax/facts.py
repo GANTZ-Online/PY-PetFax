@@ -8,10 +8,22 @@ bp = Blueprint('facts', __name__, url_prefix="/facts")
 def new_fact():
     return render_template('facts/new.html')
 
-# Route for handling form submission (will be implemented later)
+# Route for handling form submission
 @bp.route('/submit', methods=['POST'])
 def submit_fact():
-    # Process form submission here in future lessons
-    # For now, we'll just redirect to the new fact page
-    return redirect(url_for('facts/new'))
+    print(request.form)  # Output form data to the console
+    return redirect(url_for('facts.new_fact'))
 
+# Route for displaying a thank you message
+@bp.route('/', methods=['POST'])
+def index_post():
+    return 'Thanks for submitting a fun fact!'
+
+# Route for displaying a facts index page (GET and POST)
+@bp.route('/', methods=['GET', 'POST'])
+def index_get_post():
+    if request.method == 'POST':
+        print(request.form)
+        return redirect('/facts')
+    
+    return 'This is the facts index'
